@@ -3,7 +3,7 @@
 # Dependencies and Setup
 from flask import Flask, render_template
 from flask_pymongo import PyMongo
-import scrape_mars
+import Mission_to_Mars.scrape_mars as scrape_mars
 
 # Flask Setup
 

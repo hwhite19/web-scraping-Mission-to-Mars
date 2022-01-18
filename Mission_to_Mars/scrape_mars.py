@@ -7,7 +7,7 @@ import datetime as dt
 # Windows
 #################################################
 #Set Executable Path & Initialize Chrome Browser
-executable_path = {"executable_path": "./chromedriver.exe"}
+executable_path = {"executable_path":"./chromedriver.exe"}
 browser = Browser("chrome", **executable_path)
 
 #################################################
