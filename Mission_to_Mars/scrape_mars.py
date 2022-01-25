@@ -3,16 +3,10 @@ from splinter import Browser
 import pandas as pd
 import datetime as dt
 
-#################################################
-# Windows
-#################################################
 #Set Executable Path & Initialize Chrome Browser
 executable_path = {"executable_path":"./chromedriver.exe"}
 browser = Browser("chrome", **executable_path)
 
-#################################################
-# NASA Mars News
-#################################################
 # NASA Mars News Site Web Scraper
 def mars_news(browser):
     # Visit the NASA Mars News Site
@@ -42,9 +36,6 @@ def mars_news(browser):
         return None, None
     return news_title, news_paragraph
 
-    #################################################
-# JPL Mars Space Images - Featured Image
-#################################################
 # NASA JPL (Jet Propulsion Laboratory) Site Web Scraper
 def featured_image(browser):
     # Visit the NASA JPL (Jet Propulsion Laboratory) Site
@@ -74,9 +65,6 @@ def featured_image(browser):
     img_url = f"https://www.jpl.nasa.gov{img_url}"
     return img_url
 
-    #################################################
-# Mars Facts
-#################################################
 # Mars Facts Web Scraper
 def mars_facts():
     # Visit the Mars Facts Site Using Pandas to Read
@@ -89,10 +77,6 @@ def mars_facts():
 
     return df.to_html(classes="table table-striped")
 
-
-#################################################
-# Mars Hemispheres
-#################################################
 # Mars Hemispheres Web Scraper
 def hemisphere(browser):
     # Visit the USGS Astrogeology Science Center Site
@@ -139,9 +123,8 @@ def scrape_hemisphere(html_text):
     return hemisphere
 
 
-#################################################
-# Main Web Scraping Bot
-#################################################
+
+# Main Web Scraping 
 def scrape_all():
     executable_path = {"executable_path": "/usr/local/bin/chromedriver"}
     browser = Browser("chrome", **executable_path, headless=False)
