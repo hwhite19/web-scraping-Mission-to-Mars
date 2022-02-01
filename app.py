@@ -14,19 +14,22 @@ def index():
 
 @app.route("/scrape")
 def scrape():
-    # reference to a database collection (table)
     marsTable = mongo.db.marsData
-
-    # drop the table if it exists
-    mongo.db.marsData.drop()
-
-    # call scrape mars script
     mars_data = scrape_mars.scrape_all()
-
-    # take the dictionary and load it into mongoDB
-    marsTable.insert_one(mars_data)
-
+    marsTable.update_one({}, {"$set": mars_data}, upsert=True)
+    #return redirect('/', code=302)
     return mars_data
+    # # reference to a database collection (table)
+    # marsTable = mongo.db.marsData
+
+    # # drop the table if it exists
+    # mongo.db.marsData.drop()
+
+    # # call scrape mars script
+    # mars_data = scrape_mars.scrape_all()
+
+    # # take the dictionary and load it into mongoDB
+    # marsTable.insert_one(mars_data)
 
     
 if __name__ == "__main__":
