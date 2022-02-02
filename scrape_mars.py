@@ -135,8 +135,8 @@ def scrape_hemispheres(browser):
         # Finally, we navigate backwards
         browser.back()
 
-        # return the hemisphere urls with the titles
-        return hemisphere_image_urls
+    # return the hemisphere urls with the titles
+    return hemisphere_image_urls
 
 # set up as a flask app
 if __name__ == "__main__":
