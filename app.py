@@ -10,26 +10,31 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def index():
-    return "You reached the Index"
+    # access info from the database
+    mars_data = mongo.db.marsData.find_one()
+    return mars_data
 
 @app.route("/scrape")
 def scrape():
-    marsTable = mongo.db.marsData
-    mars_data = scrape_mars.scrape_all()
-    marsTable.update_one({}, {"$set": mars_data}, upsert=True)
-    #return redirect('/', code=302)
-    return mars_data
-    # # reference to a database collection (table)
     # marsTable = mongo.db.marsData
-
-    # # drop the table if it exists
-    # mongo.db.marsData.drop()
-
-    # # call scrape mars script
     # mars_data = scrape_mars.scrape_all()
+    # marsTable.update_one({}, {"$set": mars_data}, upsert=True)
+    # #return redirect('/', code=302)
 
-    # # take the dictionary and load it into mongoDB
-    # marsTable.insert_one(mars_data)
+    # reference to a database collection (table)
+    marsTable = mongo.db.marsData
+
+    # drop the table if it exists
+    mongo.db.marsData.drop()
+
+    # call scrape mars script
+    mars_data = scrape_mars.scrape_all()
+
+    # take the dictionary and load it into mongoDB
+    marsTable.insert_one(mars_data)
+
+    # go back to the index route
+    return redirect("/")
 
     
 if __name__ == "__main__":
